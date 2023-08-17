@@ -1,0 +1,181 @@
+Подсистема - MSG
+
+Чат - он же канал
+
+Всего планируется 7 типов запросов:
+    Для пользователя:
+    1. Получение списка чатов
+    2. Создание нового чата
+    3. Загрузка сообщений для чата
+    4. Отправление сообщения в чат
+    5. Редактирование сообщения в чате
+    6. Удаление сообщения в чате (собственного)
+    Для "админов":
+    1. Измнение статуса канала
+
+Оболочка запроса:
+{
+  "r": [...],
+  "t": 0
+}
+
+Оболочка ответа:
+{
+  "r": [...],
+  "t": 0
+}
+
+Json интерпретация для каждого из типов запросов:
+1. Request:
+    {
+        "s": "msg",
+        "r": "chats",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "chats",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "chats" : [
+            {
+                "subject" : "Обсуждение 1",
+                "status" : "OPEN",
+                "document" : {...}
+            },
+            {
+                "subject" : "Обсуждение 2",
+                "status" : "CLOSED",
+                "document" : null
+            }
+        ]
+    }
+2. Request:
+    {
+        "s": "msg",
+        "r": "create",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "create",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "id" : "ChatId"
+    }
+    // перезапросить чаты
+3. Request:
+    {
+        "s": "msg",
+        "r": "chat",
+        "id": "ChatId",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "create",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "messages": [
+            {
+                "id" : "MessageId",
+                "content" : "Сообщение на которое отвечают",
+                "reference" : null,
+                "type" : "M", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
+                "user" : {
+                    "id" : "UserId",
+                    "username" : "User123",
+                    "role" : "USER"
+                }
+            },
+            {
+                "id" : "MessageId",
+                "content" : "сообщение 1",
+                "reference" : "Сообщение на которое отвечают",
+                "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
+                "user" : {
+                    "id" : "UserId",
+                    "username" : "Admin123",
+                    "role" : "ADMIN"
+                }
+            }
+        ]
+    }
+4. Request:
+    {
+        "s": "msg",
+        "r": "send",
+        "id": "ChatId",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "send",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+    // перезапросить текущий чат
+5. Request:
+    {
+        "s": "msg",
+        "r": "edit",
+        "params" : {
+            "id" : "MessageId",
+            "content" : "сообщение 1",
+            "reference" : "Сообщение на которое отвечают",
+            "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
+        }
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "edit",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+    // Перезапросить текущий чат
+6. Request:
+    {
+        "s": "msg",
+        "r": "delete",
+        "id": "MessageId",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "delete",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+    // перезапросить текущий чат
+7. Request:
+    {
+        "s": "msg",
+        "r": "change",
+        "params" : {
+            "id" : "ChannelId",
+            "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed
+        }
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "change",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+    // перезапросить спимсок чатов
