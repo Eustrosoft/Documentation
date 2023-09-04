@@ -26,10 +26,14 @@
 }
 
 Json интерпретация для каждого из типов запросов:
+// request chats
 1. Request:
     {
         "s": "msg",
         "r": "chats",
+        "params" : { // todo IN FUTURE
+            "statuses" : ["N"] // statuses to request
+        }
         "l": "en-US"
     }
    Response:
@@ -41,21 +45,27 @@ Json интерпретация для каждого из типов запро
         "l": "en-US",
         "chats" : [
             {
+                "id" : "1234"
                 "subject" : "Обсуждение 1",
                 "status" : "OPEN",
                 "document" : {...}
             },
             {
+                "id" : "12345"
                 "subject" : "Обсуждение 2",
                 "status" : "CLOSED",
                 "document" : null
             }
         ]
     }
+// Create chat
 2. Request:
     {
         "s": "msg",
         "r": "create",
+        "params" : {
+            "content" : "Hello!"
+        }
         "l": "en-US"
     }
    Response:
@@ -64,14 +74,16 @@ Json интерпретация для каждого из типов запро
         "r": "create",
         "e": 0,
         "m": "Ok.",
-        "l": "en-US",
-        "id" : "ChatId"
+        "l": "en-US"
     } // after this ->  перезапросить чаты
+// get chat messages
 3. Request:
     {
         "s": "msg",
         "r": "chat",
-        "id": "ChatId",
+        "params" : {
+            "id" : "123" // chat id
+        }
         "l": "en-US"
     }
    Response:
@@ -106,6 +118,7 @@ Json интерпретация для каждого из типов запро
             }
         ]
     }
+// send message in chat
 4. Request:
     {
         "s": "msg",
@@ -127,6 +140,7 @@ Json интерпретация для каждого из типов запро
         "l": "en-US"
     }
     // перезапросить текущий чат
+// Edit chat message
 5. Request:
     {
         "s": "msg",
@@ -148,6 +162,7 @@ Json интерпретация для каждого из типов запро
         "l": "en-US"
     }
     // Перезапросить текущий чат
+// Delete chat message
 6. Request:
     {
         "s": "msg",
@@ -164,6 +179,7 @@ Json интерпретация для каждого из типов запро
         "l": "en-US"
     }
     // перезапросить текущий чат
+// Change channel status
 7. Request:
     {
         "s": "msg",
