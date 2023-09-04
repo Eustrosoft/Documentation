@@ -1,0 +1,107 @@
+Подсистема - TIS
+
+5 типов запросов:
+    1. Получение айди пользователя
+    2. Получение логина пользователя
+    3. Получение языка пользователя
+    4. Получение уровня доступа пользователя
+    5. Получение доступных уровней пользователя
+
+Оболочка запроса:
+{
+  "r": [...],
+  "t": 0
+}
+
+Оболочка ответа:
+{
+  "r": [...],
+  "t": 0
+}
+
+Json интерпретация для каждого из типов запросов:
+// User Id
+
+1. Request:
+    {
+        "s": "tis",
+        "r": "user_id",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "tis",
+        "r": "user_id",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data": "12342"
+    }
+
+// User login
+2. Request:
+    {
+        "s": "tis",
+        "r": "user_login",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "tis",
+        "r": "user_login",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data": "yadzuka"
+    }
+
+// User lang
+3. Request:
+    {
+        "s": "tis",
+        "r": "user_lang",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "tis",
+        "r": "user_lang",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US", // todo
+        "data": "RU" // todo strange?? but ok
+    }
+
+// user slevel (current - default)
+4. Request:
+    {
+        "s": "tis",
+        "r": "user_slvl",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "tis",
+        "r": "user_slvl",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data": "63"
+    }
+
+// User available slvls
+5. Request:
+    {
+        "s": "tis",
+        "r": "user_available_slvl",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "tis",
+        "r": "user_available_slvl",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data": "[31, 63]" // first - min slvl, second - max slvl
+    }
