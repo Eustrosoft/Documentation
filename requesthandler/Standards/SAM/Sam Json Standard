@@ -24,13 +24,13 @@ Json интерпретация для каждого из типов запро
 
 1. Request:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_id",
         "l": "en-US"
     }
    Response:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_id",
         "e": 0,
         "m": "Ok.",
@@ -41,13 +41,13 @@ Json интерпретация для каждого из типов запро
 // User login
 2. Request:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_login",
         "l": "en-US"
     }
    Response:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_login",
         "e": 0,
         "m": "Ok.",
@@ -58,13 +58,13 @@ Json интерпретация для каждого из типов запро
 // User lang
 3. Request:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_lang",
         "l": "en-US"
     }
    Response:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_lang",
         "e": 0,
         "m": "Ok.",
@@ -75,13 +75,13 @@ Json интерпретация для каждого из типов запро
 // user slevel (current - default)
 4. Request:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_slvl",
         "l": "en-US"
     }
    Response:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_slvl",
         "e": 0,
         "m": "Ok.",
@@ -92,13 +92,13 @@ Json интерпретация для каждого из типов запро
 // User available slvls
 5. Request:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_available_slvl",
         "l": "en-US"
     }
    Response:
     {
-        "s": "tis",
+        "s": "sam",
         "r": "user_available_slvl",
         "e": 0,
         "m": "Ok.",
