@@ -157,8 +157,8 @@ Json интерпретация для каждого из типов запро
             "zoid" : ChatId,
             "zrid" : MessageId,
             "content" : "сообщение 1",
-            "reference" : "Сообщение на которое отвечают",
-            "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
+            "reference" : Сообщение на которое отвечают,
+            "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...) //!!!! required. If not changed - pass the previous value
         }
         "l": "en-US"
     }
