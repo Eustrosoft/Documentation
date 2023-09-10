@@ -45,7 +45,7 @@ Json интерпретация для каждого из типов запро
         "l": "en-US",
         "chats" : [
             {
-                "zoid" : 1234,
+                "zoid" : 1234, // long
                 "zver" : 1234,
                 "zrid" : 1234,
                 "zlvl" : 63,
@@ -89,7 +89,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "chat",
         "params" : {
-            "zoid" : 123 // chat id
+            "zoid" : 123 // chat id long
         }
         "l": "en-US"
     }
@@ -132,7 +132,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "send",
         "params" : {
-            "zoid" : "Chat Id" // айди чата
+            "zoid" : Chat Id // айди чата
             "content" : "сообщение 1",
             "reference" : "Сообщение на которое отвечают",
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
@@ -154,7 +154,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "edit",
         "params" : {
-            "zoid" : ChatId,
+            "zoid" : ChatId, // long
             "zrid" : MessageId,
             "content" : "сообщение 1",
             "reference" : Сообщение на которое отвечают,
@@ -177,7 +177,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "delete",
         "params" : {
-            "zoid": ChatId,
+            "zoid": ChatId, // Long
             "zrid": MessageId
         }
         "l": "en-US"
@@ -198,7 +198,9 @@ Json интерпретация для каждого из типов запро
         "r": "change",
         "params" : {
             "zoid" : ChannelId,
-            "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed
+            "content":"New channel subject",
+            "reference" : docId, // Long
+            "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed //  required
         }
         "l": "en-US"
     }
