@@ -45,15 +45,21 @@ Json интерпретация для каждого из типов запро
         "l": "en-US",
         "chats" : [
             {
-                "id" : "1234"
+                "zoid" : 1234,
+                "zver" : 1234,
+                "zrid" : 1234,
+                "zlvl" : 63,
                 "subject" : "Обсуждение 1",
-                "status" : "OPEN",
+                "status" : "N", // N, W, I, C // NEW, WIP, INTERNAL, CLOSED
                 "document" : {...}
             },
             {
-                "id" : "12345"
+                "zoid" : 12345,
+                "zver" : 1234,
+                "zrid" : 1234,
+                "zlvl" : 63,
                 "subject" : "Обсуждение 2",
-                "status" : "CLOSED",
+                "status" : "S",
                 "document" : null
             }
         ]
@@ -83,7 +89,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "chat",
         "params" : {
-            "id" : "123" // chat id
+            "zoid" : 123 // chat id
         }
         "l": "en-US"
     }
@@ -96,23 +102,24 @@ Json интерпретация для каждого из типов запро
         "l": "en-US",
         "messages": [
             {
-                "id" : "MessageId",
+                "zoid" : chatId,
+                "zrid" : MessageId,
                 "content" : "Сообщение на которое отвечают",
                 "reference" : null,
                 "type" : "M", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
                 "user" : {
-                    "id" : "UserId",
+                    "id" : UserId,
                     "username" : "User123",
                     "role" : "USER"
                 }
             },
             {
-                "id" : "MessageId",
-                "content" : "сообщение 1",
+                "zoid" : chatId,
+                "zrid" : MessageId,
                 "reference" : "Сообщение на которое отвечают",
                 "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
                 "user" : {
-                    "id" : "UserId",
+                    "id" : UserId,
                     "username" : "Admin123",
                     "role" : "ADMIN"
                 }
@@ -125,7 +132,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "send",
         "params" : {
-            "id" : "Chat Id" // айди чата
+            "zoid" : "Chat Id" // айди чата
             "content" : "сообщение 1",
             "reference" : "Сообщение на которое отвечают",
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
@@ -147,7 +154,8 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "edit",
         "params" : {
-            "id" : "MessageId",
+            "zoid" : ChatId,
+            "zrid" : MessageId,
             "content" : "сообщение 1",
             "reference" : "Сообщение на которое отвечают",
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
@@ -168,7 +176,10 @@ Json интерпретация для каждого из типов запро
     {
         "s": "msg",
         "r": "delete",
-        "id": "MessageId",
+        "params" : {
+            "zoid": ChatId,
+            "zrid": MessageId
+        }
         "l": "en-US"
     }
    Response:
@@ -186,7 +197,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "change",
         "params" : {
-            "id" : "ChannelId",
+            "zoid" : ChannelId,
             "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed
         }
         "l": "en-US"
