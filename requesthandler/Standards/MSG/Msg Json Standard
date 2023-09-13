@@ -198,6 +198,7 @@ Json интерпретация для каждого из типов запро
         "r": "change",
         "params" : {
             "zoid" : ChannelId,
+            "zrid" : ChannelZrid,
             "content":"New channel subject",
             "reference" : docId, // Long
             "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed //  required
