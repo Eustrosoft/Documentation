@@ -110,7 +110,8 @@ Json интерпретация для каждого из типов запро
                 "user" : {
                     "id" : UserId,
                     "username" : "User123",
-                    "role" : "USER"
+                    "role" : "USER",
+                    "fullName" : "Poul Minchen"
                 }
             },
             {
@@ -121,7 +122,8 @@ Json интерпретация для каждого из типов запро
                 "user" : {
                     "id" : UserId,
                     "username" : "Admin123",
-                    "role" : "ADMIN"
+                    "role" : "ADMIN",
+                    "fullname" : "Adam Brookline"
                 }
             }
         ]
