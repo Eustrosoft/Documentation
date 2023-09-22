@@ -70,7 +70,8 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "create",
         "params" : {
-            "content" : "Hello!",
+            "ticket" : "Ticket 1",
+            "content" : "Hello!", // Chat message
             "slvl" : 5 // security level that available for this user (!!!request available levels before create a chat)
         }
         "l": "en-US"
