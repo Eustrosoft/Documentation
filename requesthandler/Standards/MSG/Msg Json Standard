@@ -70,7 +70,7 @@ Json интерпретация для каждого из типов запро
         "s": "msg",
         "r": "create",
         "params" : {
-            "ticket" : "Ticket 1",
+            "subject" : "Ticket 1",
             "content" : "Hello!", // Chat message
             "slvl" : 5 // security level that available for this user (!!!request available levels before create a chat)
         }
@@ -204,9 +204,9 @@ Json интерпретация для каждого из типов запро
         "params" : {
             "zoid" : ChannelId,
             "zrid" : ChannelZrid,
-            "content":"New channel subject",
+            "subject":"New channel subject",
             "reference" : docId, // Long
-            "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed //  required
+            "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed, I - internal, N - new
         }
         "l": "en-US"
     }
