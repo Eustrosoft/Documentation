@@ -9,7 +9,7 @@
     3. Загрузка сообщений для чата
     4. Отправление сообщения в чат
     5. Редактирование сообщения в чате
-    6. Удаление сообщения в чате (собственного)
+    6. Удаление сообщения в чате (1), чата (2)
     Для "админов":
     1. Измнение статуса канала
 
@@ -31,7 +31,7 @@ Json интерпретация для каждого из типов запро
     {
         "s": "msg",
         "r": "chats",
-        "params" : { // todo IN FUTURE
+        "params" : {
             "statuses" : ["N"] // statuses to request
         }
         "l": "en-US"
@@ -177,10 +177,10 @@ Json интерпретация для каждого из типов запро
     }
     // Перезапросить текущий чат
 // Delete chat message
-6. Request:
+6.1. Request:
     {
         "s": "msg",
-        "r": "delete",
+        "r": "delete_msg",
         "params" : {
             "zoid": ChatId, // Long
             "zrid": MessageId
@@ -190,12 +190,30 @@ Json интерпретация для каждого из типов запро
    Response:
     {
         "s": "msg",
-        "r": "delete",
+        "r": "delete_msg",
         "e": 0,
         "m": "Ok.",
         "l": "en-US"
     }
     // перезапросить текущий чат
+// Delete chat
+6.2. Request:
+    {
+        "s": "msg",
+        "r": "delete_ch",
+        "params" : {
+            "zoid": ChatId, // Long
+        }
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "msg",
+        "r": "delete_ch",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
 // Change channel status
 7. Request:
     {
