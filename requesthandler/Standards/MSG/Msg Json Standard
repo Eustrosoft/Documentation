@@ -203,6 +203,7 @@ Json интерпретация для каждого из типов запро
         "r": "delete_ch",
         "params" : {
             "zoid": ChatId, // Long
+            "zver": Chat Zver // Long
         }
         "l": "en-US"
     }
