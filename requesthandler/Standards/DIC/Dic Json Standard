@@ -19,13 +19,14 @@ FS:
 1. Request:
     {
         "s": "dic",
-        "r": "${DIC_NAME}", // as example: SLEVEL_CODE
+        "r": "values",
+        "name": "${DIC_NAME}", // as example: SLEVEL_CODE
         "l": "en-US"
     }
    Response:
     {
         "s": "dic",
-        "r": "${DIC_NAME}",
+        "r": "values",
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
