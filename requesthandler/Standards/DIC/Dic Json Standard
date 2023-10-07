@@ -39,7 +39,7 @@ FS:
 2. Request:
     {
         "s": "dic",
-        "r": "names",
+        "r": "dics",
         "l": "en-US"
     }
    Response:
