@@ -1,8 +1,8 @@
 Подсистема - DIC
 
 1 тип запроса:
-    1. Получение списка описаний для словаря
-    2. Получение списка значений для словаря
+    1. Получение списка описаний/зачений и т.д. для словаря по имени
+    2. Получение списка доступных словарей (их имен)
 
 ${DIC_NAME} - словарь
 Типы:
@@ -21,7 +21,7 @@ FS:
     {
         "s": "dic",
         "r": "values",
-        "name": "${DIC_NAME}", // as example: SLEVEL_CODE
+        "dic": "${DIC_NAME}", // as example: SLEVEL_CODE
         "l": "en-US"
     }
    Response:
@@ -31,22 +31,89 @@ FS:
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "values": ["1", "2", ...]
+        "values": [
+            {"dic": "${DIC_NAME}", "value": "value", "code": "code", "descr": "description"}
+        ]
     }
 
 2. Request:
     {
         "s": "dic",
-        "r": "codes",
-        "name": "${DIC_NAME}", // as example: SLEVEL_CODE
+        "r": "names",
         "l": "en-US"
     }
    Response:
     {
         "s": "dic",
-        "r": "codes",
+        "r": "dics",
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "values": ["1", "2", ...]
+        "dics": [
+            "LANG",
+            "MSG_MESSAGE_TYPE",
+            ...
+        ]
     }
+
+// example:
+
+request:
+{
+  "r" : [
+    {
+      "s" : "dic",
+      "r" : "values",
+      "name": "QR_ACTIONS"
+    }
+  ],
+  "t" : 0
+}
+
+response:
+{
+  "r": [
+    {
+      "s": "dic",
+      "e": 0,
+      "m": "Ok",
+      "l": "en-US",
+      "r": "values",
+      "values": [
+        {
+          "dic": "QR_ACTION",
+          "code": "STD",
+          "value": "Стандартная обработка"
+        },
+        {
+          "dic": "QR_ACTION",
+          "code": "REDIRECT",
+          "value": "Перенаправление"
+        },
+        {
+          "dic": "QR_ACTION",
+          "code": "REDIRECT_QR",
+          "value": "Перенаправление на другую карточку QR"
+        },
+        {
+          "dic": "QR_ACTION",
+          "code": "REDIRECT_QOID",
+          "value": "Перенаправление на документ"
+        },
+        {
+          "dic": "QR_ACTION",
+          "code": "HIDE",
+          "value": "Скрыть",
+          "descr": "Не показывать карточку"
+        },
+        {
+          "dic": "QR_ACTION",
+          "code": "LIST",
+          "value": "Список",
+          "descr": "Показать список доступных карточек (даже если она одна)"
+        }
+      ]
+    }
+  ],
+  "t": "10"
+}
