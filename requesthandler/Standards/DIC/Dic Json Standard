@@ -1,0 +1,33 @@
+Подсистема - DIC
+
+1 тип запроса:
+    1. Получение списка значений для словаря
+
+${DIC_NAME} - словарь
+Типы:
+SAM:
+    1. SLEVEL (10 digits system)
+    2. LANG
+    3. SLEVEL_CODE (16 digits system)
+MSG:
+    1. MSG_CHANNEL_STATUS
+    2. MSG_MESSAGE_TYPE
+    3. MSG_PARTY_ROLE
+FS:
+    1. FILE_TYPE
+
+1. Request:
+    {
+        "s": "dic",
+        "r": "${DIC_NAME}", // as example: SLEVEL_CODE
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "dic",
+        "r": "${DIC_NAME}",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "values": ["1", "2", ...]
+    }
