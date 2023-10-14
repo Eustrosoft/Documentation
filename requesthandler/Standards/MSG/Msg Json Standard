@@ -72,6 +72,7 @@ Json интерпретация для каждого из типов запро
         "params" : {
             "subject" : "Ticket 1",
             "content" : "Hello!", // Chat message
+            "zsid" : 1023424, // zsid for chat. Can be null
             "slvl" : 5 // security level that available for this user (!!!request available levels before create a chat)
         }
         "l": "en-US"
