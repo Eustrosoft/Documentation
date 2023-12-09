@@ -1,0 +1,186 @@
+Подсистема - FS (CMS)
+
+Оболочка запроса:
+{
+  "r": [...],
+  "t": 0
+}
+
+Оболочка ответа:
+{
+  "r": [...],
+  "t": 0
+}
+
+Json интерпретация для каждого из типов запросов:
+
+// request files for special directory
+
+1. Request:
+    {
+        "s": "cms",
+        "r": "view",
+        "path" : "/", // Path - as default - slash
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "cms",
+        "r": "view",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "content" : [
+            {
+                "description" : "Some file was created",
+                "fileName" : "SomeFile.txt",
+                "fullPath" : "/LOCAL/pub/SomeFile.txt",
+                "securityLevel" : 63,
+                "space": 0,
+                "type" : "DIRECTORY", // ["UNKNOWN", "DIRECTORY", "FILE", "LINK"]
+                "zoid" : 1441852
+            },
+            ...
+        ]
+    }
+
+// Create file | directory
+
+2. Request:
+    {
+        "s": "cms",
+        "r": "create",
+        "type" : "FILE", // ["FILE", "DIRECTORY"]
+        "fileName": "Test",
+        "path" : "/LOCAL/pub",
+        "description" : "Some description,....",
+        "securityLevel" : 31, // Int value
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "cms",
+        "r": "create",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+
+// Upload file (other subsystem - file)
+
+3. Request:
+    {
+        "s": "file",
+        "r": "upload_chunks_hex",
+        "params" : {
+            "all_chunks": 3, // until 2nd chunk number
+            "chunk": 0, // chunk index
+            "description": "Nice image",
+            "ext": "jpg",
+            "hash": "26941edd",
+            "hexString": "FFD8FFE10DA2687474703A2F2F6E732E61646F62652E636F6", // hex string (part of the file)
+            "name": "159Z_2107.w026.n002.628B.p1.628.jpg",
+            "path": "/LOCAL/priv/Test",
+            "securityLevel": 63,
+        }
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "file",
+        "r": "upload_chunks_hex",
+        "e": 0,
+        "m": "Part %d was uploaded to %s", // message that uploaded. or exception
+        "l": "en-US"
+    }
+
+// Download file (has 2 variations - POST (doesn't work with database realization) and GET)
+
+4. Request:
+GET ..?path=/LOCAL/pub/MegaFile.txt | ?id=21312312
+
+Need one of arguments = path or file id
+path - required (not)
+id - required (not)
+
+// TODO: Explain post realization
+
+contentType - not required
+
+// Copy file
+
+5. Request:
+    {
+        "s": "cms",
+        "r": "copy",
+        "from" : "", // some path to file
+        "to" : "", // path to copy
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "cms",
+        "r": "copy",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+
+// Move|rename file
+
+6. Request:
+    {
+        "s": "cms",
+        "r": "move",
+        "from" : "", // some path to file
+        "to" : "", // path to move or rename (for rename - same path but changed file name)
+        "description" : "Some changed description", // description to change
+        "securityLevel" : 32, // Changed level
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "cms",
+        "r": "move",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+
+
+// Rename file (splitted functionality)
+
+7. Request:
+    {
+        "s": "cms",
+        "r": "rename",
+        "from" : "", // some path to file
+        "to" : "", // path to rename (same as move)
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "cms",
+        "r": "rename",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
+
+
+// Delete file
+8. Request:
+    {
+        "s": "cms",
+        "r": "delete",
+        "path" : "", // Some path to delete
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "cms",
+        "r": "delete",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US"
+    }
