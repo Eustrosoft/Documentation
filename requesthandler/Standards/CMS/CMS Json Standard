@@ -135,7 +135,6 @@ contentType - not required
         "from" : "", // some path to file
         "to" : "", // path to move or rename (for rename - same path but changed file name)
         "description" : "Some changed description", // description to change
-        "securityLevel" : 32, // Changed level
         "l": "en-US"
     }
    Response:
