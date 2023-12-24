@@ -23,6 +23,8 @@
         "s": "tis",
         "r": "change_sid",
         "sid": 123141, // some number of scope
+        "zoid": 123141, // some zoid
+        "zlvl": 123141, // some zlvl
         "l": "en-US"
     }
    Response:
@@ -39,6 +41,8 @@
     {
         "s": "tis",
         "r": "change_zlvl",
+        "zoid": 123141, // some zoid
+        "zlvl": 123141, // some zlvl
         "zlvl": 12, // some zlvl number
         "l": "en-US"
     }
