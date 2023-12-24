@@ -21,8 +21,8 @@
 1. Request:
     {
         "s": "tis",
-        "r": "change_sid",
-        "sid": 123141, // some number of scope
+        "r": "change_zsid",
+        "zsid": 123141, // some number of scope
         "zoid": 123141, // some zoid
         "zver": 123141, // some zlvl
         "l": "en-US"
@@ -30,7 +30,7 @@
    Response:
     {
         "s": "tis",
-        "r": "change_sid",
+        "r": "change_zsid",
         "e": 0,
         "m": "Ok.",
         "l": "en-US"
