@@ -39,6 +39,7 @@
     {
         "s": "tis",
         "r": "change_slvl",
+        "slvl": 123123, // some slvl number
         "l": "en-US"
     }
    Response:
