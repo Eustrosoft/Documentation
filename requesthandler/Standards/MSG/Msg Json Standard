@@ -14,28 +14,15 @@
     Для "админов":
     1. Измнение статуса канала
 
-Оболочка запроса:
-{
-  "r": [...],
-  "t": 0
-}
-
-Оболочка ответа:
-{
-  "r": [...],
-  "t": 0
-}
-
-Json интерпретация для каждого из типов запросов:
 // request chats
 1. Request:
     {
         "s": "msg",
         "r": "chats",
-        "params" : {
+        "l": "en-US",
+        "data" : {
             "statuses" : ["N"] // statuses to request
         }
-        "l": "en-US"
     }
    Response:
     {
@@ -44,37 +31,39 @@ Json интерпретация для каждого из типов запро
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "chats" : [
-            {
-                "zoid" : 1234, // long
-                "zver" : 1234,
-                "zrid" : 1234,
-                "zlvl" : 63,
-                "subject" : "Обсуждение 1",
-                "status" : "N", // N, W, I, C // NEW, WIP, INTERNAL, CLOSED
-                "document" : {...}
-            },
-            {
-                "zoid" : 12345,
-                "zver" : 1234,
-                "zrid" : 1234,
-                "zlvl" : 63,
-                "subject" : "Обсуждение 2",
-                "status" : "S",
-                "document" : null
-            }
-        ]
+        "data": {
+            "chats" : [
+                {
+                    "zoid" : 1234, // long
+                    "zver" : 1234,
+                    "zrid" : 1234,
+                    "zlvl" : 63,
+                    "subject" : "Обсуждение 1",
+                    "status" : "N", // N, W, I, C // NEW, WIP, INTERNAL, CLOSED
+                    "document" : {...}
+                },
+                {
+                    "zoid" : 12345,
+                    "zver" : 1234,
+                    "zrid" : 1234,
+                    "zlvl" : 63,
+                    "subject" : "Обсуждение 2",
+                    "status" : "S",
+                    "document" : null
+                }
+            ]
+        }
     }
 
-// request chats
+// request chats version
 1.1. Request:
     {
         "s": "msg",
         "r": "update",
-        "params" : {
-            "statuses" : ["N"] // statuses to request
-        }
-        "l": "en-US"
+        "l": "en-US",
+        "data" : {
+             "statuses" : ["N"] // statuses to request
+         }
     }
    Response:
     {
@@ -83,28 +72,30 @@ Json интерпретация для каждого из типов запро
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "chats" : [
-            {
-                "zoid" : 1234,
-                "zver" : 1234
-            },
-            {
-                "zoid" : 12345,
-                "zver" : 1234
-            }
-        ]
+        "data": {
+            "chats" : [
+                {
+                    "zoid" : 1234,
+                    "zver" : 1234
+                },
+                {
+                    "zoid" : 12345,
+                    "zver" : 1234
+                }
+            ]
+        }
     }
 // Create chat
 2. Request:
     {
         "s": "msg",
         "r": "create",
-        "params" : {
+        "data" : {
             "subject" : "Ticket 1",
             "content" : "Hello!", // Chat message
             "zsid" : 1023424, // zsid for chat. Can be null
             "slvl" : 5 // security level that available for this user (!!!request available levels before create a chat)
-        }
+        },
         "l": "en-US"
     }
    Response:
@@ -114,15 +105,15 @@ Json интерпретация для каждого из типов запро
         "e": 0,
         "m": "Ok.",
         "l": "en-US"
-    } // after this ->  перезапросить чаты
+    }
 // get chat messages
 3. Request:
     {
         "s": "msg",
         "r": "chat",
-        "params" : {
+        "data" : {
             "zoid" : 123 // chat id long
-        }
+        },
         "l": "en-US"
     }
    Response:
@@ -132,47 +123,49 @@ Json интерпретация для каждого из типов запро
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "messages": [
-            {
-                "zoid" : chatId,
-                "zrid" : MessageId,
-                "content" : "Сообщение на которое отвечают",
-                "reference" : null,
-                "type" : "M", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
-                "created" : "Sep 12, 2023 3:27:54 AM", // This format
-                "user" : {
-                    "id" : UserId,
-                    "username" : "User123",
-                    "role" : "USER",
-                    "fullName" : "Poul Minchen"
+        "data": {
+            "messages": [
+                {
+                    "zoid" : chatId,
+                    "zrid" : MessageId,
+                    "content" : "Сообщение на которое отвечают",
+                    "reference" : null,
+                    "type" : "M", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
+                    "created" : "Sep 12, 2023 3:27:54 AM", // This format
+                    "user" : {
+                        "id" : UserId,
+                        "username" : "User123",
+                        "role" : "USER",
+                        "fullName" : "Poul Minchen"
+                    }
+                },
+                {
+                    "zoid" : chatId,
+                    "zrid" : MessageId,
+                    "reference" : "Сообщение на которое отвечают",
+                    "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
+                    "created" : "Sep 12, 2023 3:38:38 AM", // This format
+                    "user" : {
+                        "id" : UserId,
+                        "username" : "Admin123",
+                        "role" : "ADMIN",
+                        "fullname" : "Adam Brookline"
+                    }
                 }
-            },
-            {
-                "zoid" : chatId,
-                "zrid" : MessageId,
-                "reference" : "Сообщение на которое отвечают",
-                "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
-                "created" : "Sep 12, 2023 3:38:38 AM", // This format
-                "user" : {
-                    "id" : UserId,
-                    "username" : "Admin123",
-                    "role" : "ADMIN",
-                    "fullname" : "Adam Brookline"
-                }
-            }
-        ]
+            ]
+        }
     }
 // send message in chat
 4. Request:
     {
         "s": "msg",
         "r": "send",
-        "params" : {
+        "data" : {
             "zoid" : Chat Id // айди чата
             "content" : "сообщение 1",
             "reference" : "Сообщение на которое отвечают",
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
-        }
+        },
         "l": "en-US"
     }
    Response:
@@ -183,19 +176,18 @@ Json интерпретация для каждого из типов запро
         "m": "Ok.",
         "l": "en-US"
     }
-    // перезапросить текущий чат
 // Edit chat message
 5. Request:
     {
         "s": "msg",
         "r": "edit",
-        "params" : {
+        "data" : {
             "zoid" : ChatId, // long
             "zrid" : MessageId,
             "content" : "сообщение 1",
             "reference" : Сообщение на которое отвечают,
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...) //!!!! required. If not changed - pass the previous value
-        }
+        },
         "l": "en-US"
     }
    Response:
@@ -212,10 +204,10 @@ Json интерпретация для каждого из типов запро
     {
         "s": "msg",
         "r": "delete_msg",
-        "params" : {
+        "data" : {
             "zoid": ChatId, // Long
             "zrid": MessageId
-        }
+        },
         "l": "en-US"
     }
    Response:
@@ -232,10 +224,10 @@ Json интерпретация для каждого из типов запро
     {
         "s": "msg",
         "r": "delete_ch",
-        "params" : {
+        "data" : {
             "zoid": ChatId, // Long
             "zver": Chat Zver // Long
-        }
+        },
         "l": "en-US"
     }
    Response:
@@ -251,7 +243,7 @@ Json интерпретация для каждого из типов запро
     {
         "s": "msg",
         "r": "change",
-        "params" : {
+        "data" : {
             "zoid" : ChannelId,
             "zrid" : ChannelZrid,
             "subject":"New channel subject",

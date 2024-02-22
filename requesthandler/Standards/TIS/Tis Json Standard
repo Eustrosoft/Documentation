@@ -4,28 +4,17 @@
     1. Изменение scope объекта
     2. Изменение уровня доступа объекта
 
-Оболочка запроса:
-{
-  "r": [...],
-  "t": 0
-}
-
-Оболочка ответа:
-{
-  "r": [...],
-  "t": 0
-}
-
 1. Изменение scope объекта
-
 1. Request:
     {
         "s": "tis",
         "r": "change_zsid",
-        "zsid": 123141, // some number of scope
-        "zoid": 123141, // some zoid
-        "zver": 123141, // some zlvl
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "ZOID": 123141, // some zoid
+            "ZVER": 123141, // some zlvl
+            "ZSID": 123141 // some scope
+        }
     }
    Response:
     {
@@ -41,10 +30,12 @@
     {
         "s": "tis",
         "r": "change_zlvl",
-        "zoid": 123141, // some zoid
-        "zver": 123141, // some zlvl
-        "zlvl": 12, // some zlvl number
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "ZOID": 123141, // some zoid
+            "ZVER": 123141, // some zlvl
+            "ZLVL": 16 // some zlvl
+        }
     }
    Response:
     {

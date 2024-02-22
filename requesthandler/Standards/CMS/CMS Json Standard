@@ -1,27 +1,15 @@
 Подсистема - FS (CMS)
 
-Оболочка запроса:
-{
-  "r": [...],
-  "t": 0
-}
-
-Оболочка ответа:
-{
-  "r": [...],
-  "t": 0
-}
-
-Json интерпретация для каждого из типов запросов:
 
 // request files for special directory
-
 1. Request:
     {
         "s": "cms",
         "r": "view",
-        "path" : "/", // Path - as default - slash
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "path" : "/" // Path - as default - slash
+        }
     }
    Response:
     {
@@ -30,32 +18,35 @@ Json интерпретация для каждого из типов запро
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "content" : [
-            {
-                "description" : "Some file was created",
-                "fileName" : "SomeFile.txt",
-                "fullPath" : "/LOCAL/pub/SomeFile.txt",
-                "securityLevel" : 63,
-                "space": 0,
-                "type" : "DIRECTORY", // ["UNKNOWN", "DIRECTORY", "FILE", "LINK"]
-                "zoid" : 1441852
-            },
-            ...
-        ]
+        "data" {
+            "content" : [
+                {
+                    "description" : "Some file was created",
+                    "fileName" : "SomeFile.txt",
+                    "fullPath" : "/LOCAL/pub/SomeFile.txt",
+                    "securityLevel" : 63,
+                    "space": 0,
+                    "type" : "DIRECTORY", // ["UNKNOWN", "DIRECTORY", "FILE", "LINK"]
+                    "zoid" : 1441852
+                },
+                ...
+            ]
+        }
     }
 
 // Create file | directory
-
 2. Request:
     {
         "s": "cms",
         "r": "create",
-        "type" : "FILE", // ["FILE", "DIRECTORY"]
-        "fileName": "Test",
-        "path" : "/LOCAL/pub",
-        "description" : "Some description,....",
-        "securityLevel" : 31, // Int value
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "type" : "FILE", // ["FILE", "DIRECTORY"]
+            "fileName": "Test",
+            "path" : "/LOCAL/pub",
+            "description" : "Some description,....",
+            "securityLevel" : 31 // Int value
+        }
     }
    Response:
     {
@@ -67,12 +58,12 @@ Json интерпретация для каждого из типов запро
     }
 
 // Upload file (other subsystem - file)
-
 3. Request:
     {
         "s": "file",
         "r": "upload_chunks_hex",
-        "params" : {
+        "l": "en-US",
+        "data" : {
             "all_chunks": 3, // until 2nd chunk number
             "chunk": 0, // chunk index
             "description": "Nice image",
@@ -81,9 +72,8 @@ Json интерпретация для каждого из типов запро
             "hexString": "FFD8FFE10DA2687474703A2F2F6E732E61646F62652E636F6", // hex string (part of the file)
             "name": "159Z_2107.w026.n002.628B.p1.628.jpg",
             "path": "/LOCAL/priv/Test",
-            "securityLevel": 63,
+            "securityLevel": 63
         }
-        "l": "en-US"
     }
    Response:
     {
@@ -96,6 +86,7 @@ Json интерпретация для каждого из типов запро
 
 // Download file (has 2 variations - POST (doesn't work with database realization) and GET)
 
+// TODO: maybe will be other
 4. Request:
 GET ..?path=/LOCAL/pub/MegaFile.txt | ?id=21312312
 
@@ -113,9 +104,11 @@ contentType - not required
     {
         "s": "cms",
         "r": "copy",
-        "from" : "", // some path to file
-        "to" : "", // path to copy
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "from" : "", // some path to file
+            "to" : "" // path to copy
+        }
     }
    Response:
     {
@@ -132,10 +125,12 @@ contentType - not required
     {
         "s": "cms",
         "r": "move",
-        "from" : "", // some path to file
-        "to" : "", // path to move or rename (for rename - same path but changed file name)
-        "description" : "Some changed description", // description to change
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "from" : "", // some path to file
+            "to" : "", // path to move or rename (for rename - same path but changed file name)
+            "description" : "Some changed description" // description to change
+        }
     }
    Response:
     {
@@ -153,9 +148,11 @@ contentType - not required
     {
         "s": "cms",
         "r": "rename",
-        "from" : "", // some path to file
-        "to" : "", // path to rename (same as move)
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "from" : "", // some path to file
+            "to" : "" // path to rename (same as move)
+        }
     }
    Response:
     {
@@ -172,8 +169,10 @@ contentType - not required
     {
         "s": "cms",
         "r": "delete",
-        "path" : "", // Some path to delete
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "path" : "" // Some path to delete
+        }
     }
    Response:
     {

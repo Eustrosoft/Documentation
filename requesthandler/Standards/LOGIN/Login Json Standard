@@ -1,0 +1,39 @@
+Подсистема - Login
+
+// Login
+1. Request:
+    {
+        "s": "login",
+        "r": "login",
+        "l": "en-US",
+        "data": {
+          "login": "login",
+          "password": "password"
+        }
+    }
+   Response:
+    {
+        "s": "login",
+        "r": "login",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data" : null
+    }
+
+// Logout
+1.1. Request:
+    {
+        "s": "login",
+        "r": "logout",
+        "l": "en-US"
+    }
+   Response:
+    {
+        "s": "login",
+        "r": "logout",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data" : null
+    }

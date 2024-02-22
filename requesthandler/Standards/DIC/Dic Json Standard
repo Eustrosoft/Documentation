@@ -5,7 +5,7 @@
     2. Получение списка доступных словарей (их имен)
 
 ${DIC_NAME} - словарь
-Типы:
+Типы словарей:
 SAM:
     1. SLEVEL (10 digits system)
     2. LANG
@@ -21,8 +21,10 @@ FS:
     {
         "s": "dic",
         "r": "values",
-        "dic": "${DIC_NAME}", // as example: SLEVEL_CODE
-        "l": "en-US"
+        "l": "en-US",
+        "data": {
+            "dic": "${DIC_NAME}" // as example: SLEVEL_CODE
+        }
     }
    Response:
     {
@@ -31,9 +33,11 @@ FS:
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "values": [
-            {"dic": "${DIC_NAME}", "value": "value", "code": "code", "descr": "description"}
-        ]
+        "data": {
+            "values": [
+                {"dic": "${DIC_NAME}", "value": "value", "code": "code", "descr": "description"}
+            ]
+        }
     }
 
 2. Request:
@@ -49,71 +53,11 @@ FS:
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "dics": [
-            "LANG",
-            "MSG_MESSAGE_TYPE",
-            ...
-        ]
-    }
-
-// example:
-
-request:
-{
-  "r" : [
-    {
-      "s" : "dic",
-      "r" : "values",
-      "name": "QR_ACTIONS"
-    }
-  ],
-  "t" : 0
-}
-
-response:
-{
-  "r": [
-    {
-      "s": "dic",
-      "e": 0,
-      "m": "Ok",
-      "l": "en-US",
-      "r": "values",
-      "values": [
-        {
-          "dic": "QR_ACTION",
-          "code": "STD",
-          "value": "Стандартная обработка"
-        },
-        {
-          "dic": "QR_ACTION",
-          "code": "REDIRECT",
-          "value": "Перенаправление"
-        },
-        {
-          "dic": "QR_ACTION",
-          "code": "REDIRECT_QR",
-          "value": "Перенаправление на другую карточку QR"
-        },
-        {
-          "dic": "QR_ACTION",
-          "code": "REDIRECT_QOID",
-          "value": "Перенаправление на документ"
-        },
-        {
-          "dic": "QR_ACTION",
-          "code": "HIDE",
-          "value": "Скрыть",
-          "descr": "Не показывать карточку"
-        },
-        {
-          "dic": "QR_ACTION",
-          "code": "LIST",
-          "value": "Список",
-          "descr": "Показать список доступных карточек (даже если она одна)"
+        "data" {
+            "dics": [
+                "LANG",
+                "MSG_MESSAGE_TYPE",
+                ...
+            ]
         }
-      ]
     }
-  ],
-  "t": "10"
-}
