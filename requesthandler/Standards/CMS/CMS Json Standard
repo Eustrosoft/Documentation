@@ -27,7 +27,7 @@
                     "securityLevel" : 63,
                     "space": 0,
                     "type" : "DIRECTORY", // ["UNKNOWN", "DIRECTORY", "FILE", "LINK"]
-                    "zoid" : 1441852
+                    "ZOID" : 1441852
                 },
                 ...
             ]

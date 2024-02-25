@@ -1,25 +1,21 @@
 Подсистема - TIS
 
-5 типов запросов:
-    1. Изменение scope объекта
-    2. Изменение уровня доступа объекта
-
-1. Изменение scope объекта
+// Изменение scope объекта
 1. Request:
     {
         "s": "tis",
-        "r": "change_zsid",
+        "r": "change_ZSID",
         "l": "en-US",
         "data": {
-            "ZOID": 123141, // some zoid
-            "ZVER": 123141, // some zlvl
+            "ZOID": 123141, // some ZOID
+            "ZVER": 123141, // some ZLVL
             "ZSID": 123141 // some scope
         }
     }
    Response:
     {
         "s": "tis",
-        "r": "change_zsid",
+        "r": "change_ZSID",
         "e": 0,
         "m": "Ok.",
         "l": "en-US"
@@ -29,12 +25,12 @@
 2. Request:
     {
         "s": "tis",
-        "r": "change_zlvl",
+        "r": "change_ZLVL",
         "l": "en-US",
         "data": {
-            "ZOID": 123141, // some zoid
-            "ZVER": 123141, // some zlvl
-            "ZLVL": 16 // some zlvl
+            "ZOID": 123141, // some ZOID
+            "ZVER": 123141, // some ZLVL
+            "ZLVL": 16 // some ZLVL
         }
     }
    Response:

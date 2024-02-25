@@ -98,7 +98,7 @@
 5. Request:
     {
         "s": "sam",
-        "r": "zsid",
+        "r": "ZSID",
         "l": "en-US",
         "data": "MSG.C" // FS.F ...
     }

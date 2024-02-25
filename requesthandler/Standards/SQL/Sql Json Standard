@@ -1,0 +1,26 @@
+Подсистема - SQL
+
+// Запрос SQL
+1. Request:
+    {
+        "s": "sql",
+        "r": "sql",
+        "l": "en-US",
+        "data": {
+            "sql": "SELECT * FROM SOMEWHERE"
+        }
+    }
+   Response:
+    {
+        "s": "sql",
+        "r": "sql",
+        "e": 0,
+        "m": "Ok.",
+        "l": "en-US",
+        "data": {
+            "answer": [
+               [],
+               ...
+            ]
+        }
+    }

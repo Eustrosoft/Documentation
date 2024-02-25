@@ -32,21 +32,21 @@
         "m": "Ok.",
         "l": "en-US",
         "data": {
-            "chats" : [
+            "channels" : [
                 {
-                    "zoid" : 1234, // long
-                    "zver" : 1234,
-                    "zrid" : 1234,
-                    "zlvl" : 63,
+                    "ZOID" : 1234, // long
+                    "ZVER" : 1234,
+                    "ZRID" : 1234,
+                    "ZLVL" : 63,
                     "subject" : "Обсуждение 1",
                     "status" : "N", // N, W, I, C // NEW, WIP, INTERNAL, CLOSED
                     "document" : {...}
                 },
                 {
-                    "zoid" : 12345,
-                    "zver" : 1234,
-                    "zrid" : 1234,
-                    "zlvl" : 63,
+                    "ZOID" : 12345,
+                    "ZVER" : 1234,
+                    "ZRID" : 1234,
+                    "ZLVL" : 63,
                     "subject" : "Обсуждение 2",
                     "status" : "S",
                     "document" : null
@@ -73,14 +73,14 @@
         "m": "Ok.",
         "l": "en-US",
         "data": {
-            "chats" : [
+            "channels" : [
                 {
-                    "zoid" : 1234,
-                    "zver" : 1234
+                    "ZOID" : 1234,
+                    "ZVER" : 1234
                 },
                 {
-                    "zoid" : 12345,
-                    "zver" : 1234
+                    "ZOID" : 12345,
+                    "ZVER" : 1234
                 }
             ]
         }
@@ -93,7 +93,7 @@
         "data" : {
             "subject" : "Ticket 1",
             "content" : "Hello!", // Chat message
-            "zsid" : 1023424, // zsid for chat. Can be null
+            "ZSID" : 1023424, // ZSID for chat. Can be null
             "slvl" : 5 // security level that available for this user (!!!request available levels before create a chat)
         },
         "l": "en-US"
@@ -112,7 +112,7 @@
         "s": "msg",
         "r": "chat",
         "data" : {
-            "zoid" : 123 // chat id long
+            "ZOID" : 123 // chat id long
         },
         "l": "en-US"
     }
@@ -126,8 +126,8 @@
         "data": {
             "messages": [
                 {
-                    "zoid" : chatId,
-                    "zrid" : MessageId,
+                    "ZOID" : chatId,
+                    "ZRID" : MessageId,
                     "content" : "Сообщение на которое отвечают",
                     "reference" : null,
                     "type" : "M", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
@@ -140,8 +140,8 @@
                     }
                 },
                 {
-                    "zoid" : chatId,
-                    "zrid" : MessageId,
+                    "ZOID" : chatId,
+                    "ZRID" : MessageId,
                     "reference" : "Сообщение на которое отвечают",
                     "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...),
                     "created" : "Sep 12, 2023 3:38:38 AM", // This format
@@ -161,7 +161,7 @@
         "s": "msg",
         "r": "send",
         "data" : {
-            "zoid" : Chat Id // айди чата
+            "ZOID" : Chat Id // айди чата
             "content" : "сообщение 1",
             "reference" : "Сообщение на которое отвечают",
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...)
@@ -182,8 +182,8 @@
         "s": "msg",
         "r": "edit",
         "data" : {
-            "zoid" : ChatId, // long
-            "zrid" : MessageId,
+            "ZOID" : ChatId, // long
+            "ZRID" : MessageId,
             "content" : "сообщение 1",
             "reference" : Сообщение на которое отвечают,
             "type" : "A", // (M - обычное, L - лайк, P - опрос, A - ответ,...) //!!!! required. If not changed - pass the previous value
@@ -205,8 +205,8 @@
         "s": "msg",
         "r": "delete_msg",
         "data" : {
-            "zoid": ChatId, // Long
-            "zrid": MessageId
+            "ZOID": ChatId, // Long
+            "ZRID": MessageId
         },
         "l": "en-US"
     }
@@ -225,8 +225,8 @@
         "s": "msg",
         "r": "delete_ch",
         "data" : {
-            "zoid": ChatId, // Long
-            "zver": Chat Zver // Long
+            "ZOID": ChatId, // Long
+            "ZVER": Chat ZVER // Long
         },
         "l": "en-US"
     }
@@ -244,8 +244,8 @@
         "s": "msg",
         "r": "change",
         "data" : {
-            "zoid" : ChannelId,
-            "zrid" : ChannelZrid,
+            "ZOID" : ChannelId,
+            "ZRID" : ChannelZrid,
             "subject":"New channel subject",
             "reference" : docId, // Long
             "status" : "C" // MSG_CHANNEL_STATUS = O - open; C - closed, I - internal, N - new
