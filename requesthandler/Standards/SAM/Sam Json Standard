@@ -118,11 +118,15 @@ Json интерпретация для каждого из типов запро
    Response:
     {
         "s": "sam",
-        "r": "scopes",
+        "r": "zsid",
         "e": 0,
         "m": "Ok.",
         "l": "en-US",
-        "zsid": [
-            1048576
+        "scopes": [
+           {
+              "name" : "Some name",
+              "description" : "Some description",
+              "ZSID" : 21313123
+           }, ....
         ]
     }
